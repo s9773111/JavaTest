@@ -6,4 +6,5 @@
  *
  */
 module JavaTest {
+	requires org.apache.commons.lang3;
 }
