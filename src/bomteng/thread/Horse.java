@@ -9,7 +9,7 @@ public class Horse extends Thread {
         // thr.setName("H2");
         // 由1跑到5000
         int h = 0;
-        for (int i = 0; i<150; i++) {
+        for (int i = 0; i<250; i++) {
             h++;
             System.out.println(getName()+":"+h);
         }
