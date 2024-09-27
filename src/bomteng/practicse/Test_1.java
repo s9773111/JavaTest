@@ -62,7 +62,6 @@ public class Test_1 {
         System.out.println();
     }
 
-
     // Test2: classification
     public static void test2(){
         System.out.println("(test2 start)");
@@ -172,8 +171,8 @@ public class Test_1 {
     private static int[] calculateAB(String ans, String guess) {
         int A = 0;
         int B = 0;
-        boolean[] checkedAns = new boolean[4];  //數字和位置都正確
-        boolean[] checkedGuess = new boolean[4];    //數字正確但位置錯誤
+        boolean[] checkedAns = new boolean[4];  //A類 數字和位置都正確
+        boolean[] checkedGuess = new boolean[4];    //B類 數字正確但位置錯誤
 
         // (1)計算A 位置相同數字相同
         for (int i=0; i<4; i++) {
@@ -186,7 +185,7 @@ public class Test_1 {
 
         // (2)計算B 位置不同數字相同
         for (int i=0; i<4; i++) {
-            if (!checkedAns[i]) {   // 檢查還未匹配的答案位
+            if (!checkedAns[i]) {   // 檢查還未匹配的答案位 （非屬於A類別)
                 for (int j=0; j<4; j++) {
                     // 檢查還未匹配的猜測位，並且確認數字相同但位置不同
                     if (!checkedGuess[j] && ans.charAt(i) == guess.charAt(j)) {
@@ -289,6 +288,7 @@ public class Test_1 {
         }
     }
 
+    // test5 5.日期轉字串
     public static void test5() {
         Date date = new Date();
         System.out.println(date.toString());
