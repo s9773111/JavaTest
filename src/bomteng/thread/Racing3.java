@@ -3,6 +3,7 @@ package bomteng.thread;
 // file: Horse, Racing3;
 public class Racing3 {
     public static void main(String[] args) {
+        // 用此方法 main會第一個印出
 //        threadTest1();
 
         // Q: 如何讓main執行緒等待三匹馬結束後，才繼續往後執行
@@ -46,7 +47,6 @@ public class Racing3 {
         } catch (InterruptedException e) {
             System.out.println("執行緒被中斷");
         }
-
         System.out.println("main執行緒結束");
     }
 }

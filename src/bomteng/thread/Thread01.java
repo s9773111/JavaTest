@@ -29,6 +29,4 @@ public class Thread01 {
             System.out.println("H2:" +h2);
         }
     }
-
-
 }

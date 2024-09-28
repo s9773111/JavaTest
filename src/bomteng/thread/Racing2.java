@@ -12,7 +12,7 @@ public class Racing2 {
 
         for (int i=0; i<250; i++){
             h1++;
-            System.out.println("H1:" +h1);
+            System.out.println("HorseRunnable_H1:" +h1);
         }
 
     }

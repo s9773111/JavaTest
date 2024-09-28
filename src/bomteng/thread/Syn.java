@@ -17,13 +17,17 @@ public class Syn {
         //創建兩個執行緒同時存取和提款
         Thread t1 = new Thread(() -> account.deposit(500));
         Thread t2 = new Thread(() -> account.withdraw(200));
+        Thread t3 = new Thread(() -> account.deposit(250));
 
         t1.start();
+        t3.start();
         t2.start();
+
 
         try {
             t1.join();
             t2.join();
+            t3.join();
         } catch (InterruptedException e) {
             System.out.println("執行緒被中斷");
         }
@@ -46,10 +50,18 @@ public class Syn {
             }
         });
 
+        Thread t3 = new Thread(() -> {
+            for (int i = 0; i < 1000; i++) {
+                counter.increment();
+            }
+        });
+
         t1.start();
         t2.start();
+        t3.start();
         t1.join();
         t2.join();
+        t3.join();
 
         //輸出最終的計數器
         System.out.println("Final count:" + counter.getCount());

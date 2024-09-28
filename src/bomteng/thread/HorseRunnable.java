@@ -6,7 +6,7 @@ public class HorseRunnable implements Runnable {
         int h = 0;
         for (int i=0; i<250; i++) {
             h++;
-            System.out.println(h);
+            System.out.println("HorseRunnable_H2:" +h);
         }
     }
 }

@@ -8,7 +8,7 @@ public class Racing {
         Horse h2 = new Horse();
         h2.start();
 
-        for (int i=0; i<5000; i++) {
+        for (int i=0; i<250; i++) {
             h1++;
             System.out.println("H1:" +h1);
         }
