@@ -7,7 +7,7 @@ public class Racing3 {
 //        threadTest1();
 
         // Q: 如何讓main執行緒等待三匹馬結束後，才繼續往後執行
-        // 使用 join() + try catch
+        // 使用 join() + try catch : 插入執行緒
         threadTest2();
 
     }

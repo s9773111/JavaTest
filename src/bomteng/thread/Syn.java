@@ -4,7 +4,7 @@ public class Syn {
 
     public static void main(String[] args) throws InterruptedException {
         //銀行同步練習
-//        bankMoney();
+        // bankMoney();
 
         //計時器同步練習
         counterSyn();
@@ -15,8 +15,8 @@ public class Syn {
         BankAccount account = new BankAccount();
 
         //創建兩個執行緒同時存取和提款
-        Thread t1 = new Thread(() -> account.deposit(500));
-        Thread t2 = new Thread(() -> account.withdraw(200));
+        Thread t1 = new Thread(() -> account.deposit(550));
+        Thread t2 = new Thread(() -> account.withdraw(100));
         Thread t3 = new Thread(() -> account.deposit(250));
 
         t1.start();

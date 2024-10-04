@@ -2,7 +2,7 @@ package bomteng.thread;
 
 /**
  * 113/9/27
- * 行緒練習
+ * 執行緒練習
  * 1.取得與修改名稱
  * 2.Racing測試-新增Thread
  * 3. 9/30 新建執行緒 thread4: extends, runnable
@@ -19,7 +19,7 @@ public class Thread01 {
 //        thread2();
 
         // thread3 使用lambda
-        thread3();
+//        thread3();
 
         // 創建thread
         thread4();
