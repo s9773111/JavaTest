@@ -94,7 +94,6 @@ public class LiveLockWeb2 {
                     }
                     continue;
                 }
-
                 spoon.use(); //Eat
                 isHungry = false;
                 System.out.println(name + " : I am no longer hungry.");
