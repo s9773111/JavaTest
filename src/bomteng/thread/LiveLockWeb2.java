@@ -14,13 +14,13 @@ public class LiveLockWeb2 {
             return owner;
         }
 
+        public synchronized void use() {
+            System.out.println(owner.name + " is using the spoon.");
+        }
+
         // 解決livelock 活鎖狀況: 增加此方法
         public synchronized void setOwner(Diner owner) {
             this.owner = owner;
-        }
-
-        public synchronized void use() {
-            System.out.println(owner.name + " is using the spoon.");
         }
     }
 
@@ -37,12 +37,19 @@ public class LiveLockWeb2 {
             return isHungry;
         }
 
+        public String getName () {
+            return name;
+        }
+
         // livelock 活鎖狀況
 //        public void eatWith(Spoon spoon, Diner spouse) {
 //            System.out.println("進入eatWith 餓了嗎？" + isHungry());
 //            while (isHungry) {
+//                // 不同人 就會 sleep | spoon.getOwner()當前擁有者,
+//                // this 就是當前的Diner
 //                if (spoon.getOwner() != this ) {
 //                    try {
+//                        System.out.println("湯匙的持有者不是當前此人並等待 Diner, spoon持有者：" + spoon.getOwner().getName() +", 現在吃晚餐的人是："+this.getName());
 //                        Thread.sleep(3000); // wait for the spoon
 //                    } catch (InterruptedException e) {
 //                    }
@@ -61,7 +68,7 @@ public class LiveLockWeb2 {
 //            }
 //        }
 
-        // 解決livelock 活鎖狀況
+        // 解決 livelock 活鎖狀況
         public void eatWith(Spoon spoon, Diner spouse) {
             System.out.println("進入eatWith 餓了嗎？" + isHungry());
             // 加入 讓步次數限制
@@ -69,6 +76,8 @@ public class LiveLockWeb2 {
             while (isHungry) {
                 if (spoon.getOwner() != this ) {
                     try {
+                        System.out.println("湯匙的持有者不是當前此人並等待 Diner, spoon持有者：" + spoon.getOwner().getName() +", 現在吃晚餐的人是："+this.getName());
+
                         Thread.sleep(1000); // wait for the spoon
                     } catch (InterruptedException e) {
                     }
@@ -76,7 +85,7 @@ public class LiveLockWeb2 {
                 }
 
                 if(spouse.isHungry() && letPassCount < 3) { //加入讓步次數限制
-                    System.out.println(name + ": You eat first.");
+                    System.out.println(name + ": You eat first. 已經讓步了："+letPassCount + "次。");
                     letPassCount++;
                     try {
                         // 隨機等待時間
@@ -92,14 +101,12 @@ public class LiveLockWeb2 {
                 spoon.setOwner(spouse);
             }
         }
-
-
     }
 
     public static void main(String[] args) {
         final Diner husband = new Diner("Husband");
         final Diner wife = new Diner("Wife");
-        final Spoon spoon = new Spoon(wife);
+        final Spoon spoon = new Spoon(husband);
 
         new Thread(()-> husband.eatWith(spoon, wife)).start();
         new Thread(()-> wife.eatWith(spoon, husband)).start();
