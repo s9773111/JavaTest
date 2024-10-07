@@ -11,10 +11,15 @@ public class InterruptUsage {
         interrupt2();
     }
 
-    public static void interrupt1() {
+    public static void interrupt1() throws InterruptedException {
         Runnable task = () -> {
             try {
-                TimeUnit.SECONDS.sleep(10);
+                System.out.println("interrupt1 thread start");
+                for (int i=1;i<100;i++) {
+                    System.out.println("interrupt1 執行：" + i);
+                    TimeUnit.SECONDS.sleep(1);
+                }
+//                TimeUnit.SECONDS.sleep(10);
             } catch (InterruptedException e) {
                 System.out.println("Interrupted");
             }
@@ -22,6 +27,7 @@ public class InterruptUsage {
         };
         Thread thread = new Thread(task);
         thread.start();
+        Thread.currentThread().sleep(5000);
         thread.interrupt();
         System.out.println("interrupt1 main end");
     }
@@ -32,6 +38,7 @@ public class InterruptUsage {
             // 紀錄開始時間（毫秒為單位）
             long startTime = System.currentTimeMillis();
 
+            // 判斷中斷標誌是否被啟動
             while(!Thread.currentThread().isInterrupted()) {
                 // 計算已經過的時間
                 long elapsedTime = System.currentTimeMillis() - startTime;

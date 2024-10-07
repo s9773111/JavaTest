@@ -10,8 +10,8 @@ public class JoinUsage {
         TestJoin t2 = new TestJoin("Kitty");
         TestJoin t3 = new TestJoin("Kyle");
         t1.start();
-        t2.start();
-        t3.start();
+//        t2.start();
+//        t3.start();
 
         try {
             t1.join();
@@ -19,8 +19,8 @@ public class JoinUsage {
             e.printStackTrace();
         }
 
-//        t2.start();
-//        t3.start();
+        t2.start();
+        t3.start();
     }
 
     static class TestJoin extends Thread {
@@ -30,7 +30,7 @@ public class JoinUsage {
 
         @Override
         public void run() {
-            for (int i=0; i<10; i++) {
+            for (int i=0; i<=10; i++) {
                 System.out.println(this.getName() + ": " +i);
             }
         }
