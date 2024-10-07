@@ -7,27 +7,27 @@ public class DeadLockWeb2 {
 
     public void method1() {
         synchronized(lock1) {
-            System.out.println("Thread 1: Holding lock 1...");
+            System.out.println("Thread 1: Holding lock1...");
             try {
-                Thread.sleep(100);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
             }
             synchronized (lock2) {
-                System.out.println("Thread1 : Holding lock2 ...");
+                System.out.println("Thread 1: Holding lock2...");
             }
         }
     }
 
     public void method2() {
         synchronized(lock2) {
-            System.out.println("Thread 2: Holding lock 2...");
+            System.out.println("Thread 2: Holding lock2...");
             try {
-                Thread.sleep(100);
+                Thread.sleep(2000);
             } catch (InterruptedException e){
             }
 
             synchronized (lock1) {
-                System.out.println("Thread 2: Holding lock 1...");
+                System.out.println("Thread 2: Holding lock1...");
             }
         }
     }
