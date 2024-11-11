@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 /**
  * 113/11/9 Stream
- * 基礎練習
+ * 基礎練習 GPT提供
  */
 public class StreamTest0 {
     public static void main(String[] args) {
         // 生成方法1
-        List<String> list = Arrays.asList("a", "b", "c", "d");
+        List<String> list = Arrays.asList("a", "b", "c", "d", "e", "abcDe", "f");
         Stream<String> stream = list.stream();
         // stream.forEach(System.out::println);
 
@@ -67,7 +67,7 @@ public class StreamTest0 {
         List<String> filteredFruits2 = fruits.stream()
                 .filter(name->!name.contains("a"))
                 .collect(Collectors.toList());
-        System.out.println("testFilter2 去除含有a清單："+filteredFruits2);
+        System.out.println("testFilter2 去除含有a清單：" + filteredFruits2);
 
     }
 

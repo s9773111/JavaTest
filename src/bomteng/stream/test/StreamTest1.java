@@ -6,6 +6,9 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+/**
+ * 參：https://blog.csdn.net/weixin_42039228/article/details/123734269
+ */
 public class StreamTest1 {
 	public static void main(String[] args) {
 		
@@ -27,8 +30,7 @@ public class StreamTest1 {
     	// 2.paralleStream()
     	start = System.currentTimeMillis();
     	Stream<String> paralleStream = list.parallelStream();
-    	System.out.println("3.paralleStream: " + paralleStream);
-    	paralleStream.forEach(s-> System.out.println("4.paralleStream: " +s));
+    	paralleStream.forEach(s-> System.out.println("3.paralleStream: " +s));
     	System.out.println("並行 Stream 的執行時間：" + (end - start));
     	System.out.println("------------------------------------------------------------------------");
     	

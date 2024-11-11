@@ -4,7 +4,7 @@ package bomteng.Object.Extends.inheritance;
  * 113/11/9
  * 練習：繼承1
  * file: Employee, Manager
- *
+ * 類別與物件
  */
 public class ManagerTest {
     public static void main(String[] args) {
