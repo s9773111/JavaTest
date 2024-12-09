@@ -44,14 +44,26 @@ public class StreamPractice {
 
     @Test
     public void test0() {
+        // 返回每個數的平方
         List<Integer> l1 = Arrays.asList(1,2,3,4).stream().map(x->x*x).collect(Collectors.toList());
         System.out.println(l1);
         System.out.println("###########################");
+
         // 計算有多少Cust物件
+        /**
+         *  用Map和Reduce計算
+         */
         Integer ic1 = custs.stream().map(Cust::getAge).reduce(0, (x,y) -> x+1);
-        System.out.println("年歲：" +ic1);
+        System.out.println("個數算法1 ：" +ic1);
         Integer ic2 = custs.stream().map(e->1).reduce(0, Integer::sum);
-        System.out.println("個數：" +ic2);
+        System.out.println("個數算法2 reduce(0, Integer::sum) ：" +ic2);
+        long ic3 = custs.stream().count();
+        System.out.println("個數算法3 count：" +ic3);
+
+        // 年齡計算加總
+        Integer ageSum = custs.stream().map(Cust::getAge).reduce(0, Integer::sum);
+        System.out.println("年齡加總：" + ageSum);
+
     }
     // 1. 找出2011年發生的所有交易 並按交易額排序(低到高)
     @Test

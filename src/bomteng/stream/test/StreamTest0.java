@@ -75,7 +75,7 @@ public class StreamTest0 {
         // 轉大寫
         System.out.print("testMap1 轉大寫：");
         stream.map(String::toUpperCase).forEach(element -> System.out.print(element + "\t"));
-
+        System.out.println();
         // 轉小寫
         List<String> names = Arrays.asList("Isaac", "Andy", "Jessica", "Candy");
         List<String> lowerCaseNames = names.stream()
@@ -138,7 +138,7 @@ public class StreamTest0 {
         System.out.println("testMap7 本來：" + words);
 
         List<String> result = words.stream()
-                .filter(word->word.length() >= 5)
+                .filter(word->word.length() > 5)
                 .map(String::toUpperCase)
                 .collect(Collectors.toList());
         System.out.println("testMap7 過濾長度超過5並轉大 轉後：" + result);

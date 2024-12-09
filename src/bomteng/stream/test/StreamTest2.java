@@ -198,7 +198,6 @@ public class StreamTest2 {
         Optional<Integer> max = list.stream().reduce((x,y)->x>y ? x:y);
         // 算最大值2
         Integer max2 = list.stream().reduce(1, Integer::max);
-        System.out.println("list求和:" + sum.get() + ", " + sum2.get() + ", " + sum3);
         System.out.println("list求積:" + product.get());
         System.out.println("list最大值:" + max.get() + "," + max2);
 
