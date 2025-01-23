@@ -13,7 +13,9 @@ public class LinkedListExample {
 
         list.addFirst("Orange");
         list.removeLast();
+        list.addFirst("Lemon");
 
         System.out.println("調整後list: "+list);
+
     }
 }
