@@ -1,4 +1,4 @@
-package bomteng.Collection;
+package bomteng.Collection.Sort;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,6 +25,7 @@ public class Sort3 {
 
 }
 
+// 第一種的
 class StringComparator implements Comparator<String> {
 
     @Override

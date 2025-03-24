@@ -1,4 +1,4 @@
-package bomteng.Collection;
+package bomteng.Collection.Sort;
 
 
 import java.util.Arrays;
@@ -19,7 +19,8 @@ public class Sort2 {
                 new Customer2("X2468", "Justin", 34),
                 new Customer2("X1357", "Justin", 47)
         );
+        System.out.println("原排序：" + accounts);
         Collections.sort(accounts);
-        System.out.println(accounts);
+        System.out.println("排序後:" + accounts);
     }
 }

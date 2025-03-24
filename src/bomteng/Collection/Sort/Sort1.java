@@ -1,4 +1,4 @@
-package bomteng.Collection;
+package bomteng.Collection.Sort;
 
 import java.util.Arrays;
 
