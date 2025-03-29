@@ -1,51 +1,78 @@
 package bomteng.stream.test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.stream.*;
+
 /**
  * 113/11/9 Stream
- * 基礎練習 GPT提供
+ * 基礎練習
  */
 public class StreamTest0 {
     public static void main(String[] args) {
         // 生成方法1
-        List<String> list = Arrays.asList("a", "b", "c", "d", "e", "abcDe", "f");
-        Stream<String> stream = list.stream();
-        // stream.forEach(System.out::println);
-
-        System.out.println();
+        createStream();
 
         // 生成方法2
         Stream<String> stream2 = Stream.of("1", "1", "2", "3", "5");
         //stream2.forEach(System.out::println);
 
+        System.out.println("--------------------------------------------");
+
         // 操作
         // filter, map, sorted, distinct, limit, skip,
         // ex1 過濾(保留)
-        testFilter1(stream2);
-        testFilter2();
+        testFilter1(stream2); // 字母開頭
+        testFilter2(); // 字母包含
+        testFilter3();
 
-        System.out.println("----------------------");
+        System.out.println("--------------------------------------------");
         // ex2 轉換 大小寫、取屬性、計算、改變格式、長度、複合轉、轉加條件、轉Map
-        testMap1(stream);
-        testMap2();
-        testMap3();
-        testMap4();
-        testMap5();
+        testMap1(); // 大小寫
+        testMap2(); // 提取
+        testMap3(); // 計算-平方
+        testMap4(); // 呈現格式
+        testMap5(); // 長度
         testMap6(); //複合轉
         testMap7(); //轉加條件
         testMap8(); //物件列表轉Map
 
+        System.out.println("--------------------------------------------");
+
+        // 其他method
+        testReduce();
+        System.out.println("--------------------------------------------");
+        testDistinct();
+        System.out.println("--------------------------------------------");
+        testLimitSkip();
+        System.out.println("--------------------------------------------");
+        testMatch();
+        System.out.println("--------------------------------------------");
+        testPrimitivestream();
+        System.out.println("--------------------------------------------");
         // ex3
         testAll();
 
         // stream.map(String::toUpperCase) => stream.map(s -> s.toUpperCase())
-
-
     }
+
+    static void createStream() {
+        // 1
+        List<String> list = Arrays.asList("a", "b", "c", "d", "e", "abcDe", "f");
+        Stream<String> stream = list.stream();
+        System.out.println("createStream 1: ");
+        stream.forEach(System.out::println);
+
+        System.out.println();
+
+        // 2 產生無限序列
+        Stream<Integer> infiniteStream = Stream.iterate(1, n -> n+1).limit(10);
+        System.out.println("createStream 2: ");
+        // infiniteStream.forEach(System.out::print);
+
+        infiniteStream.forEach(n -> System.out.print(n + "\t"));
+        System.out.println();
+    }
+
 
     static void testFilter1(Stream<String> stream) {
         System.out.println("testFilter1：");
@@ -71,7 +98,20 @@ public class StreamTest0 {
 
     }
 
-    static void testMap1(Stream<String> stream) {
+
+    static void testFilter3() {
+        // 限定長度
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David", "Isaac");
+        List<String> filteredNames = names.stream()
+                .filter(name -> name.length() > 3)
+                .collect(Collectors.toList());
+
+        System.out.println("testFilter3 長度超過3的名字: " + filteredNames);
+    }
+
+    static void testMap1() {
+        List<String> list = Arrays.asList("a", "b", "c", "d", "e", "abcDe", "f");
+        Stream<String> stream = list.stream();
         // 轉大寫
         System.out.print("testMap1 轉大寫：");
         stream.map(String::toUpperCase).forEach(element -> System.out.print(element + "\t"));
@@ -151,6 +191,99 @@ public class StreamTest0 {
                 .collect(Collectors.toMap(Person::getName, Person::getAge));
 
         System.out.println("testMap8 變Map key.value："+ nameToAgeMap);
+    }
+
+    static void testReduce() {
+        List<Integer> nums = Arrays.asList(1,2,3,8,4,5,6);
+
+        // 計算總和
+        int sum = nums.stream()
+                .reduce(0, Integer::sum);
+        System.out.println("testReduce 1 計算總和: " + sum);
+
+        // 計算最大值1
+        Optional<Integer> max = nums.stream().reduce(Integer::max);
+        System.out.print("testReduce 2 找最大值reduce : ");
+        max.ifPresent(System.out::println);
+
+        // 計算最大值2 直接用
+        Optional<Integer> max2 = nums.stream().max(Integer::compareTo);
+        System.out.print("testReduce 2 找最大值max : ");
+        max2.ifPresent(System.out::println);
+
+        List<String> list = Arrays.asList("1","2","3","8","4","5","6");
+        Optional<String> min = list.stream().min(Comparator.naturalOrder());
+        System.out.println("testReduce 3 找最小值min : " + min);
+        Optional<String> max3 = list.stream().max(Comparator.naturalOrder());
+        System.out.println("testReduce 4 找最大值max : " + max3);
+        long count = list.stream().count();
+        System.out.println("testReduce 5 計數 : " + count);
+
+
+    }
+
+    static void testDistinct() {
+        List<String> distinctList = Arrays.asList("a", "b", "a", "c", "d", "c").stream()
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.print("testDistinct : ");
+        System.out.println(distinctList);
+    }
+
+    static void testLimitSkip() {
+        List<String> list = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
+
+        List<String> limited = list.stream()
+                .limit(2).collect(Collectors.toList()); // 只取前2個
+        System.out.print("testLimitSKip 1 : " + limited);
+
+        System.out.println();
+
+        List<String> skipped = list.stream()
+                                   .skip(2) // 避開前兩個
+                                   .collect(Collectors.toList());
+        System.out.println("testLimitSKip 2 : " + skipped);
+
+    }
+
+    static void testMatch() {
+//        List<String> words = Arrays.asList("apple", "kiwi", "banana", "fig", "isaacChang", "isaac", "andy", "pokemon");
+        List<String> words = Arrays.asList("apple", "akiwi", "abanana", "afig", "aisaacChang", "aisaac", "andy", "apokemon");
+        boolean anyStartsWithA = words.stream().anyMatch(s -> s.startsWith("a"));
+        boolean allStartsWithA = words.stream().allMatch(s -> s.startsWith("a"));
+        boolean noneStartsWithA = words.stream().noneMatch(s -> s.startsWith("a"));
+        System.out.println("testMatch 原集合：" + words);
+        System.out.println("testMatch 1 是否有任一個是a開頭：" + anyStartsWithA);
+        System.out.println("testMatch 2 是否全部是a開頭：" + allStartsWithA);
+        System.out.println("testMatch 3 是否都不是a開頭：" + noneStartsWithA);
+    }
+
+    static void testPrimitivestream() {
+        IntStream intStream = IntStream.range(1, 8);
+        LongStream longStream = LongStream.rangeClosed(1,10);
+        DoubleStream doubleStream = DoubleStream.of(1.0, 2.0, 3.0);
+
+        System.out.println("testPrimitivestream intstream : " + intStream);
+        intStream.forEach(System.out::println); // 打印每個元素
+
+        System.out.println("testPrimitivestream longStream : " + longStream);
+        longStream.forEach(System.out::println);
+
+        System.out.println("testPrimitivestream doubleStream : " + doubleStream);
+        doubleStream.forEach(System.out::println);
+
+        // 常用操作 stream 只能用一次
+        // 使用多個統計
+        IntSummaryStatistics stats = IntStream.range(1,8).summaryStatistics();
+        int sum = IntStream.range(1, 8).sum();
+        OptionalDouble avg =IntStream.range(1, 8).average();
+        OptionalInt max = IntStream.range(1, 8).max();
+        System.out.println("testPrimitivestream sum : " + sum);
+        System.out.println("testPrimitivestream avg : " + avg);
+        System.out.println("testPrimitivestream max : " + max);
+        System.out.println("testPrimitivestream stats.getMin : " + stats.getMin());
+        System.out.println("testPrimitivestream stats.getCount : " + stats.getCount());
+
     }
 
     static void testAll() {
