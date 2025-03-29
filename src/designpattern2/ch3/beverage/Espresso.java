@@ -2,6 +2,7 @@ package designpattern2.ch3.beverage;
 
 import designpattern2.ch3.Beverage;
 
+// 濃縮咖啡
 public class Espresso extends Beverage {
 
     public Espresso() {
