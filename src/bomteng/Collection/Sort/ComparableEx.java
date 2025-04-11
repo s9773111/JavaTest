@@ -14,10 +14,11 @@ public class ComparableEx {
         people.add(new Person("Bob", 25));
         people.add(new Person("Isaac", 34));
         people.add(new Person("Bob", 22));
-
+        System.out.println("排序前：");
+        System.out.println(people);
         // 直接排序
         Collections.sort(people);
-
+        System.out.println("排序後：");
         System.out.println(people);
     }
 }
@@ -36,7 +37,13 @@ class Person implements Comparable<Person> {
     // 自然排序：依照年齡
     @Override
     public int compareTo(Person other) {
-        return Integer.compare(this.age, other.age);
+        // 相等回傳0
+        // 比較1
+        //return Integer.compare(this.age, other.age);
+        // 比較2 年齡相同 就比較姓
+        int ageCompare = Integer.compare(this.age, other.age);
+        return ageCompare != 0 ? ageCompare : this.name.compareTo(other.name);
+
     }
 
     @Override
