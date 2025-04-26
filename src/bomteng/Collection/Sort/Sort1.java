@@ -12,6 +12,7 @@ public class Sort1 {
                 new Customer("X2468", "Justin", 34),
                 new Customer("X1357", "Justin", 47)
         );
+        // 不能sort，因為Reocrd沒有繼承Comparable
 //        Collections.sort(accounts);
         System.out.println(accounts);
     }
