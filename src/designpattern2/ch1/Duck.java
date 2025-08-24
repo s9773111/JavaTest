@@ -9,6 +9,7 @@ public abstract class Duck {
     FlyBehavior flyBehavior;
 
     QuackBehavior quackBehavior;
+
     public Duck() {
 
     }
@@ -16,7 +17,6 @@ public abstract class Duck {
     public abstract void display();
 
     // 委托給行為類別
-
     public void performFly() {
         flyBehavior.fly();
     }
