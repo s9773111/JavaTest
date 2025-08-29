@@ -2,12 +2,14 @@ package bomteng.Lambda.Book.A;
 
 /**
  * 114/8/23 Ch12
- * 12.1 認識Lambda語法 4
+ * 12.1 認識Lambda語法 4-1
  * Lambda 與 this, final
  *
  * 此匿名類別建立的實例，也是Runnabl實例
  * 因為沒有定義Runnable的toString()，顯示結果是
  * Object 預設的toString()傳回字串
+ *
+ * this：在匿名類別中指向匿名類別本身；在 Lambda 中指向外層物件。
  */
 public class ThisDemo {
 

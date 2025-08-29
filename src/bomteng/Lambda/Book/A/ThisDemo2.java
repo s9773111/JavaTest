@@ -2,12 +2,14 @@ package bomteng.Lambda.Book.A;
 
 /**
  * 114/8/23 Ch12
- * 12.1 認識Lambda語法 4
+ * 12.1 認識Lambda語法 4-2
  * Lambda 與 this, final
  *
  * 因為Hello類別包圍了 Lambda表示式
  * Lambda表示式參考了類別範疇中的名稱
  * 範例中定義了Hello類別toString()傳回 定義中的字串
+ *
+ * this：在匿名類別中指向匿名類別本身；在 Lambda 中指向外層物件。
  */
 public class ThisDemo2 {
 
