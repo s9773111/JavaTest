@@ -6,7 +6,7 @@ public class MapTest2 {
     public static void main(String[] args) {
         // TreeMap是：有序 Map，根據 Key 排序
 //        TreeMapTest();
-        TreeMapTest2();
+//        TreeMapTest2();
         // LinkedHashMap（維持插入順序）
 //        LinkedHashMapTest();
         // 遍歷 map
@@ -18,6 +18,33 @@ public class MapTest2 {
 
         // TreeMap 遍歷
 //        TreeMapforEach();
+
+        // computeIfAbsent
+        commonMethod();
+    }
+
+    // 114/8/29 常用方法
+    static void commonMethod() {
+        // 方法: computeIfAbsent
+        HashMap<String, Integer> prices = new HashMap<>();
+
+        prices.put("Shoes", 200);
+        prices.put("Bag", 300);
+        prices.put("Pant", 150);
+        System.out.println("HashMap: " + prices);
+
+        int shirtPrice = prices.computeIfAbsent("Shirt", key -> 280);
+        System.out.println("Price of Shirt: " + shirtPrice);
+
+        System.out.println("Updated HashMap: " + prices);
+
+        // 針對已經在裡面了
+        // 因為已經存在了，就不會計算
+        int shoePrice = prices.computeIfAbsent("Shoes", (key) -> 280);
+        System.out.println("Price of Shoes: " + shoePrice);
+
+        // 输出更新后的 HashMap
+        System.out.println("Updated HashMap: " + prices);
     }
 
     static void TreeMapTest() {
