@@ -64,6 +64,8 @@ public class LambdaTest2 {
         ConstructionMethodTest test = new ConstructionMethodTest();
 
         // lambda表達式
+        // Supplier<T> 要傳一個沒有參數、但會回傳T的函式介面 (要傳函式)
+        // 是「傳一個能執行 get() 產生值的物件」。
         System.out.println(test.getString(()->{return new String();}));
         System.out.println(test.getString(()->"Hello via lambda"));
 
@@ -73,7 +75,7 @@ public class LambdaTest2 {
 
     public static void method4() {
         /**
-         * 不同的目標型別(函式介面)
+         * 不同的目標型別(函式介面) | 依照參數數量可使用不同的型別
          * 0 參數建構子 → 用 Supplier<R>
          * 1 參數建構子 → 用 Function<A,R>
          * 2 參數建構子 → 用 BiFunction<A,B,R>
@@ -89,6 +91,7 @@ public class LambdaTest2 {
         Function<String, String> s1 = String::new;
         System.out.println(s1.apply("Hello Function"));
 
+        // 3個參數時
         TriFunction<String,String,Double,Apple> a3 = Apple::new;
         Apple a = a3.apply("藍蘋果","blue",280.0);
         System.out.println(a);

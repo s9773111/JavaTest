@@ -8,6 +8,12 @@ import java.util.stream.Stream;
  * 認識lambda語法
  *   Lambda與Collection關係
  *   也順便了解 Collection x Lambda/Stream 相互關係
+ *
+ *   forEach, removeIf, replaceAll, sort, distinct
+ *   computeIfAbsent, merge, toMap
+ *
+ *   關鍵字：「集合 × Lambda/Stream」的日常功夫包
+ *   有關 Stream 請看 StreamTestBasic.java
  */
 public class LambdaTest4 {
     public static void main(String[] args) {
@@ -17,11 +23,14 @@ public class LambdaTest4 {
         // Map
         mapDemo();
 
+        // 練習
+        testDemo();
 
     }
 
     public static void listDemo() {
         // 遍歷
+        // forEach 是 Iterable 內的方法
         List<String> names = List.of("Amy", "Bob", "Cindy");
         names.forEach(System.out::println);
 
@@ -38,6 +47,7 @@ public class LambdaTest4 {
         System.out.println("轉換後：" + xs2);
 
         // sort(搭配Comparator)
+        // Comparator.comparingInt .thenComparing
         List<String> xs3 = new ArrayList<>(List.of("Ant","Robert","Cindey","Bob","Isaac" ));
         System.out.println("排序前: " + xs3);
         xs3.sort(Comparator.comparingInt(String::length).thenComparing(Comparator.naturalOrder()));
@@ -55,7 +65,7 @@ public class LambdaTest4 {
         Map<String, Integer> m = Map.of("a",1, "b",2, "c",3);
         m.forEach((k,v) -> System.out.println(k + " -> " + v));
 
-        // computeIfAbsent 若不存在就建立新的
+        // computeIfAbsent 若不存在就建立新的, 存在就忽視
         // 可參 https://www.runoob.com/java/java-hashmap-computeifabsent.html
         // MapTest2.java
         Map<String, List<Integer>> buckets = new HashMap<>();
@@ -92,4 +102,37 @@ public class LambdaTest4 {
                 .collect(Collectors.toMap(s -> s.charAt(0), s -> s, (a,b) -> a));
         firstToWord.forEach((k,v) -> System.out.println(k + " -> " + v));
     }
+
+    public static void testDemo() {
+        //1. List練習
+        // 刪掉長度 < 3 的字（removeIf）
+        // 所有字轉大寫（replaceAll）
+        // 按字母序排序（sort）
+
+
+        // 會噴錯，因為Arrays固定大小的 List，不能改變內容
+        //List<String> words = Arrays.asList("apple", "car", "pharaoh", "bias", "Egypt", "rage");
+        List<String> words = new ArrayList<>(Arrays.asList("apple", "car", "pharaoh", "bias", "Egypt", "rage"));
+        words.removeIf( s -> s.length() < 4);
+        System.out.println(words);
+
+        words.replaceAll(String::toUpperCase);
+        System.out.println(words);
+
+        // Comparator.naturalOrder()
+        words.sort(Comparator.naturalOrder());
+        System.out.println(words);
+
+
+        //2. Map 練習 | 要先建立一個Map結構變數
+        // 看輸出是什麼
+        // Map.merge(K key, V value, BiFunction<V,V,V> remappingFunction)
+        //  1：要併入的值（這裡用 1 表示出現一次）
+        //  Integer::sum：合併函式（當 key 已存在時，舊值 old 和這次的 1 相加）
+        Map<String, Integer> mapTest = new HashMap<>();
+        Stream.of("a", "b", "a", "c", "b", "a").forEach(s -> mapTest.merge(s, 1, Integer::sum));
+        System.out.println(mapTest);
+
+    }
+
 }
