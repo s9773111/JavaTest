@@ -22,9 +22,11 @@ public class MiniDuckSimulator {
 
         System.out.println();
 
+        // 這邊是動態設定行為
         Duck model2 = new ModelDuck();
         System.out.println("第三隻鴨子：");
         model2.display();
+        model2.performFly(); // 原本建構式內設定的飛行
         model2.setFlyBehavior(new FlyRocketPowered());
         model2.performQuack();
         model2.performFly();

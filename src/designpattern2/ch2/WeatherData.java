@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherData implements Subject {
+    // 來保存Observes，並在建構式中建立
     private List<Observer> observers;
     private float temperature;
     private float humidity;
@@ -17,20 +18,23 @@ public class WeatherData implements Subject {
         this.observers = new ArrayList<Observer>();
     }
 
+    // 實作Subject介面
+    // 有觀察者註冊就加入到清單內
     @Override
     public void registerObserver(Observer o) {
         observers.add(o);
     }
-
+    // 實作Subject介面
     @Override
     public void removeObserver(Observer o) {
         observers.remove(o);
     }
-
+    // 實作Subject介面
+    // 把最新的狀態傳給所有觀察者
     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
-//            observer.update(temperature, humidity, pressure);
+           // observer.update(temperature, humidity, pressure);
             observer.update();
         }
     }
