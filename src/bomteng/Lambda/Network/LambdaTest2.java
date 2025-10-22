@@ -15,11 +15,11 @@ public class LambdaTest2 {
 
     public static void main(String[] args) {
         // 靜態方法引用
-        method1();
+//        method1();
         System.out.println();
 
         // 實例方法引用
-        method2();
+//        method2();
         System.out.println();
 
         // 建構子方法引用
@@ -28,7 +28,7 @@ public class LambdaTest2 {
 
         // 其他方法函數
         // ChatGPT
-        method4();
+//        method4();
 
     }
 
@@ -40,7 +40,7 @@ public class LambdaTest2 {
 
         List<Apple> appleList = Arrays.asList(apple1, apple2, apple3, apple4);
 
-        //靜態方法引用(非方法的調用)
+        // 1.靜態方法引用(非方法的調用)
         appleList.sort(Apple::compareByWeight);
         appleList.forEach(apple -> System.out.println(apple));
     }
@@ -53,12 +53,13 @@ public class LambdaTest2 {
 
         List<Apple> appleList = Arrays.asList(apple1, apple2, apple3, apple4);
 
-        // 實例
+        // 2.實例方法引用, 用 comparator 物件來引用
         AppleComparator comparator = new AppleComparator();
         appleList.sort(comparator::compareByWeight);
 
         appleList.forEach(apple -> System.out.println(apple));
     }
+
     public static void method3() {
         // Supplier: 沒有參數，但會回傳一個 T
         ConstructionMethodTest test = new ConstructionMethodTest();
@@ -66,6 +67,7 @@ public class LambdaTest2 {
         // lambda表達式
         // Supplier<T> 要傳一個沒有參數、但會回傳T的函式介面 (要傳函式)
         // 是「傳一個能執行 get() 產生值的物件」。
+        System.out.println(test.getString(()->{return "Test";}));
         System.out.println(test.getString(()->{return new String();}));
         System.out.println(test.getString(()->"Hello via lambda"));
 
@@ -161,7 +163,9 @@ class AppleComparator {
 
 // 建構子方法引用
 // Supplier: 沒有參數，但會回傳一個 T
+// 提供/產生一個值，不需要輸入
 class ConstructionMethodTest {
+    // 要傳給他一個能執行 get()、回傳 String 的 Lambda。
     public String getString(Supplier<String> supplier) {
         return supplier.get();
     }

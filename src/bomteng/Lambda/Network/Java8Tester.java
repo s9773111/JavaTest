@@ -23,9 +23,10 @@ public class Java8Tester {
 
         // 宣告型態:明確標註型別
 
-        // 宣告了四個 MathOperation 型別的變數，
+        // 宣告了四個 MathOperation 型別的變數 | 四個 Lambda 實作
         // 每個變數都用一個 Lambda 來「實作」這個 SAM 介面 的唯一抽象方法 operation(int,int)。
         // 可以宣告型態 int
+        // 就是「MathOperation 的四個不同實例（策略）
         MathOperation addition = (int a, int b) -> a + b;
         // 不宣告型態:可省略型別
         MathOperation subtraction = (a, b) -> a - b;
