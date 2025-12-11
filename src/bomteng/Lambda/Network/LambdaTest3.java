@@ -17,8 +17,11 @@ public class LambdaTest3 {
 
     //實體方法
     void demo(){
+        // lambda 沒有自己的 this，所以 this 指向外層物件 LambdaTest3。
         Runnable r1 = () -> System.out.println("r1: " + this.getClass());
 
+        // 匿名類別會產生自己的 .class
+        // 自己就是一個 class, this就是匿名類別自己本身
         Runnable r2 = new Runnable(){
             public void run(){
                 System.out.println("r2: " + this.getClass());
