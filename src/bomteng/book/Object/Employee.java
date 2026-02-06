@@ -42,4 +42,14 @@ public class Employee {
     public void setHireDay(LocalDate hireDay) {
         this.hireDay = hireDay;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", hireDay=" + hireDay +
+                '}';
+    }
+
 }

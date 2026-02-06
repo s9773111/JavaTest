@@ -3,6 +3,7 @@ package bomteng.Consumer;
 import java.util.function.Consumer;
 
 public class TestConsumer2 {
+
     public static void main(String[] args) {
         // 常用方法：
         // 1. accpet()
