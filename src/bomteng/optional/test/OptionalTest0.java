@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public class OptionalTest0 {
     public static void main(String[] args) {
-        //Test1(); // 建立 Optional
+        Test1(); // 建立 Optional
         System.out.println("-----------------------");
 
         //Test2(); // 認識orElse, orElseGet差異
@@ -30,17 +30,17 @@ public class OptionalTest0 {
         //Test6(); // isPresent + get, ifPresent
         System.out.println("-----------------------");
 
-        Test7(); // 科學記號 專案遇到
+        //Test7(); // 科學記號 專案遇到
         System.out.println("-----------------------");
 
     }
 
     public static void Test1(){
         System.out.println("[Test1 建立 Optional]");
-        // 1. of: 確定值 不為 null 時使用
+        // 1. of: 確定值不為 null 時使用
         Optional<String> a = Optional.of("Hello");
         // 2. ofNullable: 值可能是 null
-        Optional<String> b = Optional.ofNullable(null);
+        Optional<String> b = Optional.ofNullable("123");
         // 3. empty: 直接建立一個 空 Optional
         Optional<String> c = Optional.empty();
 
@@ -53,6 +53,7 @@ public class OptionalTest0 {
 
         System.out.println("打印2 ifPresent：");
         // ifPresent(...) 是Consumer
+        // 是方法參考(Method Reference)
         // void ifPresent(Consumer<? super T> action), Consumer<String>
         a.ifPresent(System.out::println);
         b.ifPresent(System.out::println);
