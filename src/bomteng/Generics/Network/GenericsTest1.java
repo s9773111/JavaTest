@@ -1,6 +1,7 @@
 package bomteng.Generics.Network;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -57,8 +58,59 @@ public class GenericsTest1 {
     }
 }
 
+// 能接受泛型的類
 class Box<T> {
+    // 本來是 ArrayList <T> , 但就只限定ArrayList
+    private List <T> item = new ArrayList<>();
+
     private T value;
-    public void set(T v) { this.value = v; }
-    public T get() { return value; }
+
+    public Box(T[] list) {
+        item.addAll(Arrays.asList(list));
+    }
+    public Box() {
+
+    };
+
+    //接受泛型的函式
+    public void Add(T i) {
+        this.item.add(i);
+    }
+    public T getByIndex(int i) {
+        return this.item.get(i);
+    }
+    // 第1種遍歷方式
+    public int size() {
+        return this.item.size();
+    }
+    // 第2種遍歷方式
+    public List<T> getAllItems() {
+        return this.item;
+    }
+
+    //靜態泛型方法
+    // 此泛型參數與該建立物件的泛型參數沒有關係 | 建立用String, 呼叫此方法傳Integer
+    public static <K> List<K> whoLong(List<K> o1, List<K> o2){
+        if (o1.size() > o2.size()) {
+            return o1;
+        } else {
+            return o2;
+        }
+    }
+
+    // 可以接受不同類型的參數
+    public static <K> List<?> whoLong2(List<?> o1, List<?> o2) {
+        if (o1.size() > o2.size()) {
+            return o1;
+        } else {
+            return o2;
+        }
+    }
+
+    public void set(T v) {
+        this.value = v;
+    }
+    public T get() {
+        return value;
+    }
 }
