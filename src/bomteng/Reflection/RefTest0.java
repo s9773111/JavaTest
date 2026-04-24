@@ -39,6 +39,8 @@ public class RefTest0 {
         System.out.println(cls2.getSimpleName());
         System.out.println(cls3.getSuperclass());
         System.out.println(cls1.getInterfaces());
+        System.out.println(cls2.getModifiers());
+        System.out.println(cls3.getConstructors());
     }
 
     public static void test2() throws Exception {
