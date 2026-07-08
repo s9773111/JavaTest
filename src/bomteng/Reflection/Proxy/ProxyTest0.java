@@ -1,19 +1,19 @@
 package bomteng.Reflection.Proxy;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
 
 /**
  * Proxy ex1:建立一個自動記錄 Log 的經紀人
  * 動態生成代理人並執行
+ *
+ * 被代理的物件必須實現介面
  */
 public class ProxyTest0 {
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
         // 1. 第一種
-        /*
+
         Service realService = new RealService();
         Service proxyInstance = (Service) Proxy.newProxyInstance(
                 realService.getClass().getClassLoader(), //類別載入器
@@ -30,17 +30,17 @@ public class ProxyTest0 {
         proxyInstance.work();
         proxyInstance.rest();
 
-         */
+
 
 
         // 2. 第二種 寫上getProperties() 會保留$Proxy0.class
 
-        System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
-        Class proxyClazz = Proxy.getProxyClass(Service.class.getClassLoader(), Service.class);
-        Constructor constructor = proxyClazz.getConstructor(InvocationHandler.class);
-        Service service = (Service) constructor.newInstance(new MyProxyHandler(new RealService()));
-        service.work();
-        service.rest();
+//        System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles", "true");
+//        Class proxyClazz = Proxy.getProxyClass(Service.class.getClassLoader(), Service.class);
+//        Constructor constructor = proxyClazz.getConstructor(InvocationHandler.class);
+//        Service service = (Service) constructor.newInstance(new MyProxyHandler(new RealService()));
+//        service.work();
+//        service.rest();
 
 
     }

@@ -5,7 +5,7 @@ package bomteng.Class;
  * 匿名類別 介紹
  */
 
-public class AnonymousClass {
+public class AnonymousClass1 {
     public static void main(String[] args) {
         // 基本用法
         Ex1();

@@ -14,7 +14,7 @@ public class SetTest1 {
     static  void test1() {
         // 1. 建立
         Set<Integer> bag = new HashSet<>();
-        System.out.println(bag);
+        System.out.println("bag原本內容：" + bag);
 
         // 2. 新增數字
         bag.add(1);
