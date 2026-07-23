@@ -46,7 +46,7 @@ public class LambdaTest0 {
 
 
         // 2. Using Comparator for sorting
-        List<String> names = Arrays.asList("Isaac", "Quanqiu", "Japan", "cat");
+        List<String> names = Arrays.asList("Isaac", "Quanqiu", "Japan", "cat", "Alex");
         Collections.sort(names, (a, b) -> a.length() - b.length());
         System.out.println("Sorted names: " + names);
         // 舊有寫法
@@ -63,7 +63,9 @@ public class LambdaTest0 {
     }
 }
 
+// 這個註解是告訴編譯器：幫我檢查這是不是標準的
 @FunctionalInterface
 interface Calculator {
+    // 只有一個抽象方法！
     int compute(int a, int b);
 }

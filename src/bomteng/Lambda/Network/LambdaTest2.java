@@ -15,15 +15,15 @@ public class LambdaTest2 {
 
     public static void main(String[] args) {
         // 靜態方法引用
-//        method1();
+        method1();
         System.out.println();
 
         // 實例方法引用
-//        method2();
+        method2();
         System.out.println();
 
         // 建構子方法引用
-        method3();
+//        method3();
         System.out.println();
 
         // 其他方法函數
@@ -41,6 +41,7 @@ public class LambdaTest2 {
         List<Apple> appleList = Arrays.asList(apple1, apple2, apple3, apple4);
 
         // 1.靜態方法引用(非方法的調用)
+        // 可參考檔案 MethodReferenceDemo
         appleList.sort(Apple::compareByWeight);
         appleList.forEach(apple -> System.out.println(apple));
     }
