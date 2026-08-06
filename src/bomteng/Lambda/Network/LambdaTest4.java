@@ -18,10 +18,10 @@ import java.util.stream.Stream;
 public class LambdaTest4 {
     public static void main(String[] args) {
         // List/Set常用
-        listDemo();
+//        listDemo();
 
         // Map
-        mapDemo();
+//        mapDemo();
 
         // 練習
         testDemo();
@@ -95,12 +95,23 @@ public class LambdaTest4 {
         scores.replaceAll((k,v)->v+5); //全部加分
         System.out.println("加分後：" + scores);
 
-        // toMap (key重複要給合併規則?)
-        List<String> words = List.of("apple", "ant", "Banana", "Isaac", "Candy");
+        // toMap (key重複要給合併規則?) | 1對1
+        List<String> words = List.of("apple", "ant", "Banana", "Isaac", "Candy", "Cat");
         // 重複取前者
         Map<Character, String> firstToWord = words.stream()
                 .collect(Collectors.toMap(s -> s.charAt(0), s -> s, (a,b) -> a));
         firstToWord.forEach((k,v) -> System.out.println(k + " -> " + v));
+
+        // Collections.groupingBy() 1對多
+        Map<Character, List<String>> groupedByFirstChar = words.stream()
+                                                               .collect(Collectors.groupingBy(s -> s.charAt(0)));
+        System.out.println("=== 依照字首分類的結果 ===");
+        groupedByFirstChar.forEach((key, valueList) -> {
+            // 將List<String> 用，串接文字印出
+            String joinedWords = String.join(", ", valueList);
+            System.out.println(key + " -> " + joinedWords);
+        });
+
     }
 
     public static void testDemo() {
