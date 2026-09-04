@@ -20,7 +20,7 @@ public class ListToMapTest {
 
         // 要搜尋的目標是：第49999筆資料 (末尾)
         String targetJobId = "JOB_49999";
-        int searchCount = 3000; // 模擬搜尋1,000次
+        int searchCount = 4000; // 模擬搜尋1,000次
 
         System.out.println("--- 開始效能測試 | 資料量: " + dataSize + " 筆, 搜尋次數: " + searchCount + "次 ---");
 
